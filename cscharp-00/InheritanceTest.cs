@@ -33,6 +33,29 @@ namespace csharp00
         public Square(int x) : base(x, x) { }
     }
 
+    interface I1
+    {
+        string foo();
+    }
+
+
+    interface I2
+    {
+        int foo();
+    }
+
+    class C : I1, I2
+    {
+        string I1.foo()
+        {
+            return "FOO1";
+        }
+
+        int I2.foo()
+        {
+            return 2;
+        }
+    }
     [TestClass]
     public class InheritanceTest
     {
@@ -49,6 +72,15 @@ namespace csharp00
             Rectangle r = new Square(10);
             Assert.AreEqual(100, r.getArea());
             Assert.AreEqual(40, r.getPerimeter());
+        }
+
+        [TestMethod]
+        public void MultipleInterfaceWithMethodCollision()
+        {
+            I1 i1 = new C();
+            Assert.AreEqual("FOO1", i1.foo());
+            I2 i2 = new C();
+            Assert.AreEqual(2, i2.foo());
         }
     }
 }
