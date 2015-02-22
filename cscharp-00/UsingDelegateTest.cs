@@ -24,5 +24,12 @@ namespace csharp00
             UsingDelegate ud = new UsingDelegate(Double);
             Assert.AreEqual(10, ud.doMath(5));
         }
+
+        [TestMethod]
+        public void anonymousDelegate()
+        {
+            MathAction action = delegate(double input) { return input * input; };
+            Assert.AreEqual(25, action(5));
+        }
     }
 }
