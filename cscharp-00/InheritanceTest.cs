@@ -48,12 +48,17 @@ namespace csharp00
     {
         string I1.foo()
         {
-            return "FOO1";
+            return "FOO" + foo();
         }
 
         int I2.foo()
         {
-            return 2;
+            return foo() + foo();
+        }
+
+        int foo()
+        {
+            return 1;
         }
     }
     [TestClass]
